@@ -3,6 +3,9 @@ access.log
 error.log
 .idea
 
+#vagrant
+.vagrant
+
 # Laravel
 /bootstrap/compiled.php
 .env.*.php
