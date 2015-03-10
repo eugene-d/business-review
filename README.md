@@ -11,4 +11,4 @@
     $ vagrant up
 ```
 - Then in browser [http://br.dev](http://br.dev)
----
+
