@@ -19,4 +19,7 @@ apt-get install -y php5-mcrypt;
 if ! [ -L /var/www/html ]; then
   rm -rf /var/www/html;
   ln -fs /vagrant/www/public /var/www/html;
+  cd /vagrant/www;
+  php ../composer/composer.phar install;
+  sudo /etc/init.d/apache2 restart;
 fi
