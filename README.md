@@ -14,4 +14,4 @@
 
 ### phpStorm + Xdebug configuration for Vagrant vm
 
-![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/www/public/img/phpStormXdebug.png)
+![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/master/www/public/img/phpStormXdebug.png)
