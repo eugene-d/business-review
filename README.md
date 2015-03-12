@@ -12,3 +12,6 @@
 ```
 - Then in browser [http://br.dev](http://br.dev)
 
+### phpStorm + Xdebug configuration for Vagrant vm
+
+![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/www/public/img/phpStormXdebug.png)
