@@ -9,12 +9,14 @@ apt-get update;
 #apt-get dist-upgrade;
 #----------------------
 
-echo "##########Installing mc##########";
+echo "##########Installing app##########";
 apt-get install -y mc;
 apt-get install -y git;
 apt-get install -y php5;
 apt-get install -y php5-mcrypt;
 apt-get install -y php5-mysql;
+apt-get install -y nodejs;
+apt-get install -y npm;
 
 #mysql
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password 123';
@@ -34,11 +36,15 @@ sudo echo "xdebug.idekey=\"PHPSTORM-XDEBUG\"" >> /etc/php5/apache2/php.ini;
 sudo echo "xdebug.remote_autostart=on" >> /etc/php5/apache2/php.ini;
 sudo echo "xdebug.remote_connect_back=on" >> /etc/php5/apache2/php.ini;
 
+#modRewrite
+sudo a2enmod rewrite;
+sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/sites-available/default;
+
 #apt-get install -y apache2;
 if ! [ -L /var/www/html ]; then
   rm -rf /var/www/html;
-  ln -fs /vagrant/www/public /var/www/html;
-  cd /vagrant/www;
+  ln -fs /vagrant/public /var/www/html;
+  cd /vagrant/server/www;
   php ../composer/composer.phar install;
 fi
 
