@@ -13,4 +13,4 @@
 - Then in browser [http://br.dev](http://br.dev)
 
 
-![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/master/www/public/img/phpStormXdebug.png)
+![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/master/public/img/phpStormXdebug.png)
