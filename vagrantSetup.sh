@@ -16,6 +16,14 @@ apt-get install -y php5;
 apt-get install -y php5-mcrypt;
 apt-get install -y php5-mysql;
 
+####nodejs Install
+apt-get install -y openjdk-7-jre;
+apt-get install -y curl;
+curl -sL https://deb.nodesource.com/setup | sudo bash -;
+apt-get install -y nodejs;
+apt-get install -y build-essential;
+npm install -g npm@latest;
+
 #mysql
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password 123';
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password 123';
@@ -39,7 +47,7 @@ if ! [ -L /var/www/html ]; then
   rm -rf /var/www/html;
   ln -fs /vagrant/www/public /var/www/html;
   cd /vagrant/www;
-  php ../composer/composer.phar install;
+// php ../composer/composer.phar install;
 fi
 
 sudo /etc/init.d/apache2 restart;

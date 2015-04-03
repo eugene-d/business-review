@@ -20,7 +20,9 @@ var path = require('path'),
     livePagePort = '35001',
     debug = false,
     WATCH_MODE = 'watch',
-    RUN_MODE = 'run';
+    RUN_MODE = 'run',
+    spawn = require('child_process').spawn,
+    gutil = require('gulp-util');
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -189,6 +191,28 @@ gulp.task('protractor', function(done) {
         connect.serverClose();
       }
       done();
+    });
+
+    // Finally execute your script below - here "ls -lA"
+    var child = spawn("sh", ["serverForProtractor.sh"], {cwd: process.cwd()}),
+        stdout = '',
+        stderr = '';
+
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', function (data) {
+        stdout += data;
+        //gutil.log(data);
+    });
+
+    child.stderr.setEncoding('utf8');
+    child.stderr.on('data', function (data) {
+        stderr += data;
+        //gutil.log(gutil.colors.red(data));
+    });
+
+    child.on('close', function(code) {
+        gutil.log("Done with exit code", code);
+        //gutil.log("You access complete stdout and stderr from here"); // stdout, stderr
     });
 });
 
