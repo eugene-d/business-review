@@ -42,5 +42,5 @@ NODE_ENV = production
 NODE_ENV = development
 
 #### HTTP Server for Protractror
-
 cd client/build
+php -S 127.0.0.1:35000
