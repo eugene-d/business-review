@@ -38,6 +38,29 @@ function resolveTargetDir() {
   return debug ? userConfig.build_dir : userConfig.compile_dir;
 }
 
+function startPhpServer() {
+    var child = spawn("sh", ["serverForProtractor.sh"], {cwd: process.cwd()}),
+        stdout = '',
+        stderr = '';
+
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', function (data) {
+        stdout += data;
+        //gutil.log(data);
+    });
+
+    child.stderr.setEncoding('utf8');
+    child.stderr.on('data', function (data) {
+        stderr += data;
+        //gutil.log(gutil.colors.red(data));
+    });
+
+    child.on('close', function(code) {
+        gutil.log("Done with exit code", code);
+        //gutil.log("You access complete stdout and stderr from here"); // stdout, stderr
+    });
+}
+
 function globWithTargetDir(globs) {
   return globs.filter(function (glob) {
     return !glob.match(/^\!/)}
@@ -172,6 +195,7 @@ gulp.task('karma', function() {
 });
 
 gulp.task('protractor', function(done) {
+  startPhpServer();
   gulp.src(userConfig.app_files.jsscenario)
     .pipe(protractor({
       configFile: 'protractor.conf.js',
@@ -191,28 +215,6 @@ gulp.task('protractor', function(done) {
         connect.serverClose();
       }
       done();
-    });
-
-    // Finally execute your script below - here "ls -lA"
-    var child = spawn("sh", ["serverForProtractor.sh"], {cwd: process.cwd()}),
-        stdout = '',
-        stderr = '';
-
-    child.stdout.setEncoding('utf8');
-    child.stdout.on('data', function (data) {
-        stdout += data;
-        //gutil.log(data);
-    });
-
-    child.stderr.setEncoding('utf8');
-    child.stderr.on('data', function (data) {
-        stderr += data;
-        //gutil.log(gutil.colors.red(data));
-    });
-
-    child.on('close', function(code) {
-        gutil.log("Done with exit code", code);
-        //gutil.log("You access complete stdout and stderr from here"); // stdout, stderr
     });
 });
 
