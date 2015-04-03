@@ -3,6 +3,11 @@ access.log
 error.log
 .idea
 
+client/build
+client/node_modules
+client/vendor
+public/build
+
 #vagrant
 .vagrant
 

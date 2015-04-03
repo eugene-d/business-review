@@ -1,14 +1,11 @@
+var GulpSelenium = require('gulp-selenium');
+var gulpSelenium = GulpSelenium();
+
 exports.config = {
-    chromeOnly: false,
-    capabilities: {
-        browserName: 'firefox'
-    },
-    specs: ['src/tests/integration/**/*.js'],
-    baseUrl: 'http://localhost:8001',
-    framework: 'mocha',
-    mochaOpts: {
-        ui: 'bdd',
-        reporter: 'list',
-        enableTimeouts: false
-    }
+  seleniumServerJar: gulpSelenium.path,
+  chromeDriver: gulpSelenium.chromeDriverPath,
+  //seleniumAddress: 'http://localhost:4444/wd/hub', // Using JAR instead of address
+  capabilities: {
+    'browserName': 'phantomjs'
+  }
 };
