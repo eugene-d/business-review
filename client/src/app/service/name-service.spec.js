@@ -1,13 +1,13 @@
 define(
   [
     'angular-mocks',
-    'app/app',
-    'app/service/name-service'
+    'app',
+    'service/name-service'
   ],
   function() {
     describe('NameService', function() {
 
-      beforeEach(module('ng-boilerplate'));
+      beforeEach(module('reviewApp'));
 
       var NameService;
       beforeEach(inject(function (_NameService_) {
