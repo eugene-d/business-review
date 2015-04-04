@@ -2,34 +2,30 @@ define(
   [
     'angular',
     'angular-route',
-    'app/controller/home-controller'
+    'app/welcome/welcome'
   ],
   function(angular) {
     'use strict';
 
-    angular
-      .module('ng-boilerplate', ['ngRoute', 'ng-boilerplate.home-controller'])
-      .config([
-        '$routeProvider',
-        '$sceProvider',
-        '$locationProvider',
-        function($routeProvider, $sceProvider, $locationProvider) { // jshint ignore:line
-          $routeProvider
-            .when('/', {
-              controller: 'HomeController',
-              templateUrl: 'app/controller/home.tpl.html'
-            })
-            .otherwise({ redirectTo: '/' });
+    var appName = 'reviewApp';
 
-          // Disables Strict Contextual Escaping for IE8 compatibility
-          $sceProvider.enabled(false);
+    var app = angular.module(appName, ['ngRoute']);
 
-//          // Commented out for use on GitHub Pages
-//          // Only use html5Mode for modern browsers
-//          if (window.history && history.pushState) {
-//            $locationProvider.html5Mode(true);
-//          }
-        }
-      ]);
+    app.init = function () {
+      angular.bootstrap(document, [appName])
+    };
+
+    app.config(['$routeProvider', function appConfig($urlRouteProvider) {
+      $urlRouteProvider.otherwise('/welcome');
+    }]);
+
+    app.run([function runApp() {
+    }]);
+
+    app.controller('AppCtrl', function () {
+      // do nothing
+    });
+
+    return app;
   }
 );

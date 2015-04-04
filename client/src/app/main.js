@@ -1,13 +1,10 @@
 (function(requirejs) {
   'use strict';
+
   requirejs.config(window.requirejsConfig);
 
-  require([
-    'angular',
-    'app/app'
-  ], function (angular) {
-    // Needs to be separate from app since we don't want to bootstrap to
-    // document when running tests
-    angular.bootstrap(document, ['ng-boilerplate']);
+  require(['app/app'], function (app) {
+    app.init();
   });
+
 })(window.requirejs);
