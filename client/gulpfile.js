@@ -101,7 +101,7 @@ gulp.task('vendorJs', ['clean:build'], function() {
     .pipe(connect.reload());
 });
 
-gulp.task('js', ['clean:build'], function() {
+gulp.task('js', function() {
   var src = userConfig.app_files.js.concat(userConfig.app_files.atpl);
   var jsTask = gulp.src(src, {base: './src'});
   if (!debug) {
@@ -233,11 +233,12 @@ gulp.task('debug', function() {
 gulp.task('watch-mode', function() {
   mode = WATCH_MODE;
 
-  var jsWatcher = gulp.watch(userConfig.app_files.js, ['js']),
+  var jsWatcher = gulp.watch(userConfig.app_files.js, ['js', 'karma', 'protractor']),
     cssWatcher = gulp.watch(userConfig.app_files.scss, ['css', 'protractor']),
     //imageWatcher = gulp.watch('src/image/**/*', ['image']),
     htmlWatcher = gulp.watch(userConfig.app_files.atpl, ['template', 'protractor']),
-    testWatcher = gulp.watch(userConfig.app_files.jsunit, ['karma', 'protractor']);
+    testWatcher = gulp.watch(userConfig.app_files.jsunit, ['karma']);
+    testWatcher = gulp.watch(userConfig.app_files.jsscenario, ['protractor']);
 
   function changeNotification(event) {
     console.log('File', event.path, 'was', event.type, ', running tasks...');
@@ -257,4 +258,4 @@ gulp.task('server', ['connect', 'default']);
 gulp.task('test', ['debug', 'connect', 'karma', 'protractor']);
 
 gulp.task('build', ['debug', 'clean:build', 'vendorJs', 'assets', 'index-html', 'symlink']);
-gulp.task('watch', ['build', 'watch-mode', 'connect']);
+gulp.task('watch', ['build', 'watch-mode', 'connect', 'karma', 'protractor']);
