@@ -1,31 +1,29 @@
-define(
-  [
+define( [
     'angular',
     'angular-route',
-    'app/welcome/welcome'
+    'uiRouter',
+    'welcome/welcome',
+    'service/name-service'
   ],
   function(angular) {
     'use strict';
 
     var appName = 'reviewApp';
 
-    var app = angular.module(appName, ['ngRoute']);
+    angular.module(appName, ['ngRoute', 'reviewApp.welcome', 'reviewApp.name-service'])
 
-    app.init = function () {
-      angular.bootstrap(document, [appName])
-    };
-
-    app.config(['$routeProvider', function appConfig($urlRouteProvider) {
+    .config(['$routeProvider', function appConfig($urlRouteProvider) {
       $urlRouteProvider.otherwise('/welcome');
-    }]);
+    }])
 
-    app.run([function runApp() {
-    }]);
+    .run(function runApp() {})
 
-    app.controller('AppCtrl', function () {
-      // do nothing
-    });
+    .controller('AppCtrl', function () {});
 
-    return app;
+    return {
+      init: function () {
+        angular.bootstrap(document, [appName]);
+      }
+    };
   }
 );

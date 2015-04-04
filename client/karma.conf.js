@@ -1,10 +1,10 @@
 module.exports = function(config) {
   var userConfig = require('./build.config.js');
   var testFiles = [
-    'app/requirejs-config.js',
-    '../test/unit.config.js',
-    { pattern: 'app/**/*.js', included: false },
-    { pattern: 'vendor/**/*.js', included: false }
+    'src/app/requirejs-config.js',
+    'test/unit.config.js',
+    { pattern: 'build/app/**/*.js', included: false },
+    { pattern: 'build/vendor/**/*.js', included: false }
   ];
 
   var options = JSON.parse(process.argv[2]);
@@ -12,11 +12,11 @@ module.exports = function(config) {
   if (options.tests) {
     testFiles.push({ pattern: 'test/unit/' + options.test, included: false });
   } else {
-    testFiles.push({ pattern: '../' + userConfig.app_files.jsunit, included: false });
+    testFiles.push({ pattern: userConfig.app_files.jsunit, included: false });
   }
 
   config.set({
-    basePath: './build',
+    basePath: './',
     frameworks: ['requirejs', 'mocha', 'chai'],
     files: testFiles,
     autoWatch: false,

@@ -3,7 +3,7 @@
 
   requirejs.config(window.requirejsConfig);
 
-  require(['app/app'], function (app) {
+  require(['app'], function (app) {
     app.init();
   });
 
