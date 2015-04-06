@@ -15,8 +15,14 @@ define( [
 
     angular.module(appName, ['ngRoute', 'ngMaterial', 'reviewApp.welcome', 'reviewApp.name-service'])
 
-    .config(['$routeProvider', function appConfig($urlRouteProvider) {
+    .config(['$routeProvider', '$mdThemingProvider',
+        function appConfig($urlRouteProvider, $mdThemingProvider) {
+
       $urlRouteProvider.otherwise('/welcome');
+
+      $mdThemingProvider.theme('default')
+        .primaryPalette('teal')
+        .accentPalette('deep-orange');
     }])
 
     .run(function runApp() {})
