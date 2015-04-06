@@ -24,7 +24,7 @@ module.exports = {
       'vendor/requirejs/require.js'
     ],
     css: [
-      'vendor/angular-material/angular-material.min.css'
+      'vendor/angular-material/angular-material.css'
     ],
     dev: [
       'vendor/angular-mocks/angular-mocks.js'
