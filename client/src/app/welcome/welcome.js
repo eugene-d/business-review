@@ -4,7 +4,7 @@ define(['angular'], function(angular) {
     /**
      * @module Welcome
      */
-  angular.module('reviewApp.welcome', ['ui.router'])
+  angular.module('reviewApp.welcome', ['ui.router', 'ngMaterial'])
 
     /**
      * @module Welcome

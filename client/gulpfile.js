@@ -101,6 +101,21 @@ gulp.task('vendorJs', ['clean:build'], function() {
     .pipe(connect.reload());
 });
 
+gulp.task('vendorCss', ['clean:build'], function() {
+  var src = userConfig.vendor_files.css;
+  var jsTask = gulp.src(src, {base: './vendor/angular-material/'});
+  if (!debug) {
+    jsTask
+      .pipe(gulp.dest(userConfig.compile_dir + '/assets'));
+  } else {
+    jsTask
+      .pipe(gulp.dest(userConfig.build_dir + '/assets'));
+  }
+
+  return jsTask
+    .pipe(connect.reload());
+});
+
 gulp.task('js', function() {
   var src = userConfig.app_files.js.concat(userConfig.app_files.atpl);
   var jsTask = gulp.src(src, {base: './src'});
@@ -257,5 +272,5 @@ gulp.task('default', ['watch-mode', 'all']);
 gulp.task('server', ['connect', 'default']);
 gulp.task('test', ['debug', 'connect', 'karma', 'protractor']);
 
-gulp.task('build', ['debug', 'clean:build', 'vendorJs', 'assets', 'index-html', 'symlink']);
+gulp.task('build', ['debug', 'clean:build', 'vendorJs', 'vendorCss', 'assets', 'index-html', 'symlink']);
 gulp.task('watch', ['build', 'watch-mode', 'connect', 'karma', 'protractor']);
