@@ -1,5 +1,3 @@
 {
-  "directory": "vendor",
-  "json": "bower.json",
-  "analytics": false
+  "directory": "vendor"
 }

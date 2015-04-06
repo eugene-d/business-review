@@ -1,27 +1,25 @@
-module.exports = function (config) {
+module.exports = function(config) {
+  var userConfig = require('./build.config.js');
+  var testFiles = [
+    'src/app/requirejs-config.js',
+    'test/unit.config.js',
+    { pattern: 'build/app/**/*.js', included: false },
+    { pattern: 'build/vendor/**/*.js', included: false }
+  ];
 
-    config.set({
-        frameworks: ['mocha', 'chai-sinon'],
-        browsers: ['PhantomJS'],
-        plugins: [
-            'karma-mocha',
-            'karma-typescript-preprocessor',
-            'karma-phantomjs-launcher',
-            'karma-chai-sinon'
-        ],
-        files: [
-            'vendor/angular/angular.js',
-            'vendor/ui-router/release/angular-ui-router.js',
-            'vendor/angular-mocks/angular-mocks.js',
-            'build/src/templates.js',
-            'src/app/**/module.ts',
-            'src/app/**/!(module).ts',
-            'src/tests/unit/**/*.js'
-        ],
-        exclude: ['src/tests/integration/**/*.js'],
-        preprocessors: {
-            '**/*.ts': ['typescript']
-        }
-    });
+  var options = JSON.parse(process.argv[2]);
 
+  if (options.tests) {
+    testFiles.push({ pattern: 'test/unit/' + options.test, included: false });
+  } else {
+    testFiles.push({ pattern: userConfig.app_files.jsunit, included: false });
+  }
+
+  config.set({
+    basePath: './',
+    frameworks: ['requirejs', 'mocha', 'chai'],
+    files: testFiles,
+    autoWatch: false,
+    captureTimeout: 60000
+  });
 };
