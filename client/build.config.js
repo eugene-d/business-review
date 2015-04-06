@@ -4,7 +4,7 @@ module.exports = {
 
   app_files: {
     js: ['src/**/*.js', '!src/**/*.spec.js', '!src/**/*.scenario.js'],
-    jsunit: ['src/**/*.spec.js'],
+    jsunit: 'src/**/*.spec.js',
     jsscenario: ['src/**/*.scenario.js'],
     html: ['src/index.html'],
     styles: ['assets/*.css'],
