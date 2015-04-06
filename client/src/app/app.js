@@ -1,6 +1,9 @@
 define( [
     'angular',
     'angular-route',
+    'angular-animate',
+    'angular-aria',
+    'angular-material',
     'uiRouter',
     'welcome/welcome',
     'service/name-service'
