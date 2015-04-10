@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCountriesTable extends Migration {
-    private $tName = 'countries';
+class CreateCategoriesSecondaryTable extends Migration {
+    private $tName = 'categories_secondary';
 
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class CreateCountriesTable extends Migration {
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name_us', 100)->nullable()->default(null);
-            $table->string('name_ua', 100)->nullable()->default(null);
-            $table->string('name_ru', 100)->nullable()->default(null);
-            $table->string('code', 2)->index()->unique()->nullable()->default(null);
+            $table->integer('category_id')->index()->unsigned()->nullable()->default(null);
+            $table->string('name_us', 100)->index()->nullable()->default(null);
+            $table->string('name_ua', 100)->index()->nullable()->default(null);
+            $table->string('name_ru', 100)->index()->nullable()->default(null);
         });
     }
 

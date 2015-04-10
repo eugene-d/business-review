@@ -15,13 +15,11 @@ class CreateUsersTable extends Migration {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
             $table->integer('type_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('location_id')->index()->unsigned()->nullable()->default(null);
             $table->integer('email_notifications')->unsigned()->default(1);
             $table->integer('is_active')->unsigned()->default(1);
-            $table->integer('sex')->unsigned()->nullable()->default(null);
             $table->string('email', 50)->nullable()->default(null);
-            $table->string('password', 32)->nullable()->default(null);
-            $table->string('code', 250)->nullable()->default(null);
+            $table->string('password', 60)->nullable()->default(null);
+            $table->string('code', 60)->nullable()->default(null);
             $table->string('first_name', 50)->nullable()->default(null);
             $table->string('last_name', 50)->nullable()->default(null);
             $table->string('photo', 36)->nullable()->default(null);

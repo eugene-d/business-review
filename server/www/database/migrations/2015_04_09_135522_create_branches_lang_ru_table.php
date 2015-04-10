@@ -13,8 +13,7 @@ class CreateBranchesLangRuTable extends Migration {
      */
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('branch_id')->primary()->unsigned();
             $table->string('name', 255)->nullable()->default(null);
             $table->string('description', 1024)->nullable()->default(null);
             $table->string('about', 1024)->nullable()->default(null);

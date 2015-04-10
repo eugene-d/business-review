@@ -16,7 +16,8 @@ class CreateBranchesCategoriesTable extends Migration {
             $table->increments('id');
             $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
             $table->integer('category_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('category_sub_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('categories_secondary_id')->unsigned()->nullable()->default(null);
+            $table->integer('categories_tertiary_id')->unsigned()->nullable()->default(null);
         });
     }
 

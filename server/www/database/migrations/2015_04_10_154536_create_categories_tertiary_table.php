@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesSubTable extends Migration {
-    private $tName = 'categories_sub';
+class CreateCategoriesTertiaryTable extends Migration {
+    private $tName = 'categories_tertiary';
 
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCategoriesSubTable extends Migration {
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('categories_secondary_id')->index()->unsigned()->nullable()->default(null);
             $table->string('name_us', 100)->index()->nullable()->default(null);
             $table->string('name_ua', 100)->index()->nullable()->default(null);
             $table->string('name_ru', 100)->index()->nullable()->default(null);

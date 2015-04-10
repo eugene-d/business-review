@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchesReviewsTable extends Migration {
-    private $tName = 'branches_reviews';
+class CreateReviewsTable extends Migration {
+    private $tName = 'reviews';
 
     /**
      * Run the migrations.

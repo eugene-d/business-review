@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationsTable extends Migration {
-    private $tName = 'locations';
+class CreateBranchesLocationsTable extends Migration {
+    private $tName = 'branches_locations';
 
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateLocationsTable extends Migration {
      */
     public function up() {
         Schema::create($this->tName, function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('city_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('zip_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('branch_id')->primary()->unsigned();
+            $table->integer('city_id')->unsigned()->nullable()->default(null);
+            $table->integer('zip_id')->unsigned()->nullable()->default(null);
             $table->string('address_us', 100)->index()->nullable()->default(null);
             $table->string('address_ua', 100)->index()->nullable()->default(null);
             $table->string('address_ru', 100)->index()->nullable()->default(null);

@@ -13,8 +13,7 @@ class CreateReviewsLangUsTable extends Migration {
      */
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('review_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('review_id')->primary()->unsigned();
             $table->string('text', 4096)->nullable()->default(null);
         });
     }
