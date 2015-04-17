@@ -15,9 +15,9 @@ class CreateBranchesPhonesTable extends Migration {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
             $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('priority')->unsigned()->default(1);
+            $table->integer('phone_priority')->unsigned()->default(1);
             $table->integer('is_fax')->unsigned()->default(0);
-            $table->string('number', 15)->nullable()->default(null);
+            $table->string('phone', 15)->nullable()->default(null);
         });
     }
 

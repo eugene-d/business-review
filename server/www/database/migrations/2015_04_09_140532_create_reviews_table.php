@@ -21,6 +21,9 @@ class CreateReviewsTable extends Migration {
             $table->dateTime('deleted_at')->nullable()->default(null);
             $table->dateTime('created_at')->nullable()->default(null);
             $table->dateTime('updated_at')->nullable()->default(null);
+            $table->string('text_us', 4096)->nullable()->default(null);
+            $table->string('text_ua', 4096)->nullable()->default(null);
+            $table->string('text_ru', 4096)->nullable()->default(null);
         });
     }
 

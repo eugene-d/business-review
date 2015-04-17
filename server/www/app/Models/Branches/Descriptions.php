@@ -2,13 +2,13 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Phones extends Model {
+class Descriptions extends Model {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'branches_phones';
+    protected $table = 'branches_descriptions';
     public $timestamps = false;
 
     /**
@@ -16,7 +16,7 @@ class Phones extends Model {
      *
      * @var array
      */
-    protected $fillable = ['phone_priority', 'is_fax', 'phone'];
+    protected $fillable = ['description_us', 'about_us', 'description_ua', 'about_ua', 'description_ru', 'about_ru'];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -57,7 +57,10 @@ ln -s /usr/share/phpmyadmin/ /vagrant/public/phpmyadmin;
 
 #modRewrite
 sudo a2enmod rewrite;
-sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/sites-available/default;
+sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf;
+
+#change Apache user
+sudo sed -i 's/www-data/vagrant/g' /etc/apache2/envvars;
 
 #apt-get install -y apache2;
 if ! [ -L /var/www/html ]; then

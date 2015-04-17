@@ -16,12 +16,20 @@ class Sites extends Model {
      *
      * @var array
      */
-    protected $fillable = ['branch_id', 'priority', 'url'];
+    protected $fillable = ['site_priority', 'site'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id'];
+    protected $hidden = ['id', 'branch_id'];
+
+    /**
+     * The relations method
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch() {
+        return $this->belongsTo('App\Models\Branches', 'branch_id');
+    }
 }

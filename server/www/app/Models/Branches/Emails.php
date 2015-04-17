@@ -16,12 +16,20 @@ class Emails extends Model {
      *
      * @var array
      */
-    protected $fillable = ['branch_id', 'priority', 'email'];
+    protected $fillable = ['email_priority', 'email'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id'];
+    protected $hidden = ['id', 'branch_id'];
+
+    /**
+     * The relations method
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch() {
+        return $this->belongsTo('App\Models\Branches', 'branch_id');
+    }
 }

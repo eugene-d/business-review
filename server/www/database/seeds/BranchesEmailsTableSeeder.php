@@ -13,7 +13,7 @@ class BranchesEmailsTableSeeder extends Seeder {
         BranchesEmails::truncate();
         BranchesEmails::create([
             'branch_id' => 1,
-            'priority' => 1,
+            'email_priority' => 1,
             'email' => 'pauwau@ukr.net'
         ]);
     }

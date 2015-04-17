@@ -14,3 +14,9 @@
 
 
 ![phpStorm Xdebug Screenshot](https://raw.githubusercontent.com/eugene-d/business-review/master/public/img/phpStormXdebug.png)
+
+##Debug mode
+If you do not see errors in debug mode try next:
+```sh
+chmod -R 777 server/www/storage/
+```

@@ -18,12 +18,15 @@ class CreateBranchesTable extends Migration {
             $table->string('request', 255)->unique()->nullable()->default(null);
             $table->float('rating', 10, 8)->index()->nullable()->default(null);
             $table->integer('user_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('published')->index()->unsigned()->default(0);
+            $table->integer('published')->index()->unsigned()->default(1);
             $table->integer('deleted')->index()->unsigned()->default(0);
             $table->integer('viewed')->unsigned()->default(0);
             $table->dateTime('deleted_at')->nullable()->default(null);
             $table->dateTime('created_at')->nullable()->default(null);
             $table->dateTime('updated_at')->nullable()->default(null);
+            $table->string('name_us', 255)->nullable()->default(null);
+            $table->string('name_ua', 255)->nullable()->default(null);
+            $table->string('name_ru', 255)->nullable()->default(null);
         });
     }
 

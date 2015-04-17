@@ -13,8 +13,8 @@ class BranchesSitesTableSeeder extends Seeder {
         BranchesSites::truncate();
         BranchesSites::create([
             'branch_id' => 1,
-            'priority' => 1,
-            'url' => 'http://pau-wau.com.ua/'
+            'site_priority' => 1,
+            'site' => 'http://pau-wau.com.ua/'
         ]);
     }
 }

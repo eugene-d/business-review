@@ -18,7 +18,10 @@ class BranchesTableSeeder extends Seeder {
             'user_id' => 1,
             'published' => 1,
             'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'name_ru' => 'Пау-Вау',
+            'name_ua' => 'Пау-Вау',
+            'name_us' => 'Pau-Wau'
         ]);
     }
 }
