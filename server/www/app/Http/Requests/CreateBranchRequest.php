@@ -65,7 +65,11 @@ class CreateBranchRequest extends Request {
             'address_ua' => 'string|max:100',
             'address_ru' => 'string|max:100',
             'latitude' => 'numeric|max:10',
-            'longitude' => 'numeric|max:10'
+            'longitude' => 'numeric|max:10',
+            //branches_categories
+            'category_id' => 'integer|max:10|required_with:categories_secondary_id,categories_tertiary_id',
+            'categories_secondary_id' => 'integer|max:10',
+            'categories_tertiary_id' => 'integer|max:10'
         ];
     }
 }

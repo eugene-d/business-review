@@ -14,7 +14,7 @@ class BranchesCategoriesTableSeeder extends Seeder {
         BranchesCategories::create([
             'branch_id' => 1,
             'category_id' => 1,
-            'categories_secondary_id' => 1
+            'category_secondary_id' => 1
         ]);
     }
 }

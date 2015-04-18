@@ -13,9 +13,9 @@ class StatesTableSeeder extends Seeder {
         States::truncate();
         States::create([
             'country_id' => 1,
-            'name_us' => 'Zaporozhye',
-            'name_ua' => 'Запорізька',
-            'name_ru' => 'Запорожская',
+            'state_us' => 'Zaporozhye',
+            'state_ua' => 'Запорізька',
+            'state_ru' => 'Запорожская',
             'code' => 'ZP'
         ]);
     }

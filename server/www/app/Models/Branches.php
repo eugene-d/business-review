@@ -78,4 +78,12 @@ class Branches extends Model {
     public function location() {
         return $this->hasOne('App\Models\Branches\Locations', 'branch_id', 'id');
     }
+
+    /**
+     * The relations method
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category() {
+        return $this->hasOne('App\Models\Branches\Categories', 'branch_id', 'id');
+    }
 }

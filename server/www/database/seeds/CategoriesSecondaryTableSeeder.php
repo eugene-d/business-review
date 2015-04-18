@@ -13,9 +13,9 @@ class  CategoriesSecondaryTableSeeder extends Seeder {
         CategoriesSecondary::truncate();
         CategoriesSecondary::create([
             'category_id' => 1,
-            'name_us' => 'Pizzeria',
-            'name_ua' => 'Піцерії',
-            'name_ru' => 'Пиццерии'
+            'category_secondary_us' => 'Pizzeria',
+            'category_secondary_ua' => 'Піцерії',
+            'category_secondary_ru' => 'Пиццерии'
         ]);
     }
 }

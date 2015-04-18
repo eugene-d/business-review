@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration {
             $table->string('last_name', 50)->nullable()->default(null);
             $table->string('photo', 36)->nullable()->default(null);
             $table->string('phone', 20)->nullable()->default(null);
-            $table->string('website', 200)->nullable()->default(null);
+            $table->string('site', 200)->nullable()->default(null);
             $table->dateTime('registered_at')->nullable()->default(null);
             $table->dateTime('last_login_at')->nullable()->default(null);
         });

@@ -13,9 +13,9 @@ class CitiesTableSeeder extends Seeder {
         Cities::truncate();
         Cities::create([
             'state_id' => 1,
-            'name_us' => 'Zaporozhye',
-            'name_ua' => 'Запоріжжя',
-            'name_ru' => 'Запорожье',
+            'city_us' => 'Zaporozhye',
+            'city_ua' => 'Запоріжжя',
+            'city_ru' => 'Запорожье',
             'latitude' => 47.8388000,
             'longitude' => 35.1395670
         ]);

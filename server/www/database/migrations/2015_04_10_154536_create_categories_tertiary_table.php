@@ -14,10 +14,10 @@ class CreateCategoriesTertiaryTable extends Migration {
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('categories_secondary_id')->index()->unsigned()->nullable()->default(null);
-            $table->string('name_us', 100)->index()->nullable()->default(null);
-            $table->string('name_ua', 100)->index()->nullable()->default(null);
-            $table->string('name_ru', 100)->index()->nullable()->default(null);
+            $table->integer('category_secondary_id')->index()->unsigned()->nullable()->default(null);
+            $table->string('category_tertiary_us', 100)->index()->nullable()->default(null);
+            $table->string('category_tertiary_ua', 100)->index()->nullable()->default(null);
+            $table->string('category_tertiary_ru', 100)->index()->nullable()->default(null);
         });
     }
 

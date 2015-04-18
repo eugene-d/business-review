@@ -14,9 +14,9 @@ class CreateCountriesTable extends Migration {
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name_us', 100)->nullable()->default(null);
-            $table->string('name_ua', 100)->nullable()->default(null);
-            $table->string('name_ru', 100)->nullable()->default(null);
+            $table->string('country_us', 100)->nullable()->default(null);
+            $table->string('country_ua', 100)->nullable()->default(null);
+            $table->string('country_ru', 100)->nullable()->default(null);
             $table->string('code', 2)->index()->unique()->nullable()->default(null);
         });
     }

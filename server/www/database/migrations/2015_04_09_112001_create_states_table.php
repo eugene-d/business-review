@@ -15,9 +15,9 @@ class CreateStatesTable extends Migration {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
             $table->integer('country_id')->index()->unsigned()->nullable()->default(null);
-            $table->string('name_us', 100)->index()->nullable()->default(null);
-            $table->string('name_ua', 100)->index()->nullable()->default(null);
-            $table->string('name_ru', 100)->index()->nullable()->default(null);
+            $table->string('state_us', 100)->index()->nullable()->default(null);
+            $table->string('state_ua', 100)->index()->nullable()->default(null);
+            $table->string('state_ru', 100)->index()->nullable()->default(null);
             $table->string('code', 2)->nullable()->default(null);
         });
     }

@@ -6,6 +6,7 @@ use App\Models\Branches\Phones;
 use App\Models\Branches\Sites;
 use App\Models\Branches\Descriptions;
 use App\Models\Branches\Locations;
+use App\Models\Branches\Categories;
 use Illuminate\Database\Eloquent\Model;
 
 class CreateBranchService {
@@ -42,6 +43,9 @@ class CreateBranchService {
                     break;
                 case 'city_id':
                     $this->saveBranchRelativeAttribute($attributes, $primary, new Locations());
+                    break;
+                case 'category_id':
+                    $this->saveBranchRelativeAttribute($attributes, $primary, new Categories());
                     break;
             }
         }

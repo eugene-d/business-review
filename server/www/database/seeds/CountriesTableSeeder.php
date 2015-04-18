@@ -12,9 +12,9 @@ class CountriesTableSeeder extends Seeder {
     public function run() {
         Countries::truncate();
         Countries::create([
-            'name_us' => 'Ukraine',
-            'name_ua' => 'Україна',
-            'name_ru' => 'Украина',
+            'country_us' => 'Ukraine',
+            'country_ua' => 'Україна',
+            'country_ru' => 'Украина',
             'code' => 'UA'
         ]);
     }

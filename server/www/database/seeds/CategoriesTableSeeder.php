@@ -12,9 +12,9 @@ class CategoriesTableSeeder extends Seeder {
     public function run() {
         Categories::truncate();
         Categories::create([
-            'name_us' => 'Food',
-            'name_ua' => 'Їжа',
-            'name_ru' => 'Еда'
+            'category_us' => 'Food',
+            'category_ua' => 'Їжа',
+            'category_ru' => 'Еда'
         ]);
     }
 }

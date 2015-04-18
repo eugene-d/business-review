@@ -16,7 +16,7 @@ class CreateBranchesUsersTable extends Migration {
             $table->increments('id');
             $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
             $table->integer('user_id')->index()->unsigned()->nullable()->default(null);
-            $table->string('roles', 255)->nullable()->default(null);
+            $table->string('role', 255)->nullable()->default(null);
         });
     }
 

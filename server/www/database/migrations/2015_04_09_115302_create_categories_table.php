@@ -14,9 +14,9 @@ class CreateCategoriesTable extends Migration {
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name_us', 100)->index()->nullable()->default(null);
-            $table->string('name_ua', 100)->index()->nullable()->default(null);
-            $table->string('name_ru', 100)->index()->nullable()->default(null);
+            $table->string('category_us', 100)->index()->nullable()->default(null);
+            $table->string('category_ua', 100)->index()->nullable()->default(null);
+            $table->string('category_ru', 100)->index()->nullable()->default(null);
         });
     }
 

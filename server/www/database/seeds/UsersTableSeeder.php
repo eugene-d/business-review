@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder {
             'last_name' => 'Admin',
             'photo' => 'user.jpg',
             'phone' => '123456789',
-            'website' => 'http://br.dev/',
+            'site' => 'http://br.dev/',
             'registered_at' => Carbon::now()->toDateTimeString(),
             'last_login_at' => Carbon::now()->toDateTimeString()
         ]);

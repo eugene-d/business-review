@@ -15,9 +15,9 @@ class CreateCitiesTable extends Migration {
         Schema::create($this->tName, function(Blueprint $table) {
             $table->increments('id');
             $table->integer('state_id')->index()->unsigned()->nullable()->default(null);
-            $table->string('name_us', 100)->index()->nullable()->default(null);
-            $table->string('name_ua', 100)->index()->nullable()->default(null);
-            $table->string('name_ru', 100)->index()->nullable()->default(null);
+            $table->string('city_us', 100)->index()->nullable()->default(null);
+            $table->string('city_ua', 100)->index()->nullable()->default(null);
+            $table->string('city_ru', 100)->index()->nullable()->default(null);
             $table->float('latitude', 10, 6)->nullable()->default(null);
             $table->float('longitude', 10, 6)->nullable()->default(null);
         });
