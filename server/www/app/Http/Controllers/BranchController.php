@@ -10,16 +10,10 @@ class BranchController extends Controller {
      * Display a listing of the resource.
      * @return Response
      */
-    public function index() {
+    public function index(CreateBranchRequest $request, CreateBranchService $createBranchService, Branches $branches) {
+        var_dump($request->all());
+        $createBranchService->create($request->all(), $branches);
         return 'Display a listing of the resource.';
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create() {
-        return 'create';
     }
 
     /**

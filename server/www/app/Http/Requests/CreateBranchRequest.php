@@ -43,21 +43,29 @@ class CreateBranchRequest extends Request {
             'name_ru' => 'alpha_dash|max:255|min:2',
             //branches_emails
             'email_priority' => 'integer|max:10',
-            'email' => 'email',
+            'email' => 'email|required_with:email_priority',
             //branches_sites
             'site_priority' => 'integer|max:10',
-            'site' => 'url',
+            'site' => 'url|required_with:site_priority',
             //branches_phones
             'phone_priority' => 'integer|max:10',
             'phone' => 'alpha_dash|max:15',
             'is_fax' => 'boolean',
             //branches_descriptions
-            'description_us' => 'string|max:1024',
+            'description_us' => 'string|max:1024|required_with:about_us,description_ua,about_ua,description_ru,about_ru',
             'about_us' => 'string|max:1024',
             'description_ua' => 'string|max:1024',
             'about_ua' => 'string|max:1024',
             'description_ru' => 'string|max:1024',
             'about_ru' => 'string|max:1024',
+            //branches_locations
+            'city_id' => 'integer|max:10|required_with:zip_id,address_us,address_ua,address_ru,latitude,longitude',
+            'zip_id' => 'integer|max:10',
+            'address_us' => 'string|max:100',
+            'address_ua' => 'string|max:100',
+            'address_ru' => 'string|max:100',
+            'latitude' => 'numeric|max:10',
+            'longitude' => 'numeric|max:10'
         ];
     }
 }

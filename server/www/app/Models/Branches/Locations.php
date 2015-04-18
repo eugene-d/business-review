@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 class Locations extends Model {
     /**
      * The database table used by the model.
-     *
      * @var string
      */
     protected $table = 'branches_locations';
@@ -13,10 +12,21 @@ class Locations extends Model {
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
-    protected $fillable = ['branch_id', 'city_id', 'zip_id', 'address_us', 'address_ua', 'address_ru',
-        'latitude', 'longitude'
-    ];
+    protected $fillable = ['city_id', 'zip_id', 'address_us', 'address_ua', 'address_ru', 'latitude', 'longitude'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     * @var array
+     */
+    protected $hidden = ['branch_id'];
+
+    /**
+     * The relations method
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch() {
+        return $this->belongsTo('App\Models\Branches', 'branch_id');
+    }
 }
