@@ -1,16 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Http\JsonResponse;
 
 class CreateBranchRequest extends Request {
-
-    /**
-     * The URI to redirect to if validation fails
-     *
-     * @var string
-     */
-    protected $redirect = 'branch/denied';
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -18,6 +11,23 @@ class CreateBranchRequest extends Request {
      */
     public function authorize() {
         return true;
+    }
+
+    /**
+     * override Illuminate\Foundation\Http\FormRequest
+     * Custom realization of response method for changing JSON response object
+     * @param array $errors
+     * @return $this|JsonResponse
+     */
+    public function response(array $errors) {
+        $statusCode = 422;
+        if ($this->ajax() || $this->wantsJson()) {
+            return new JsonResponse(['status' => $statusCode, 'errors' => $errors], $statusCode);
+        }
+
+        return $this->redirector->to($this->getRedirectUrl())
+            ->withInput($this->except($this->dontFlash))
+            ->withErrors($errors, $this->errorBag);
     }
 
     /**

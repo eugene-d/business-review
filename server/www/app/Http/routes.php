@@ -20,5 +20,8 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('branch/denied', 'BranchController@denied');
-Route::resource('branch', 'BranchController', ['except' => 'create']);
+Route::group(array('prefix' => 'v1'), function () {
+    Route::get('branch/denied', 'BranchController@denied');
+    Route::resource('branch', 'BranchController', ['except' => ['create', 'edit']]);
+});
+
