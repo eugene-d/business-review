@@ -21,7 +21,6 @@ Route::controllers([
 ]);
 
 Route::group(array('prefix' => 'v1'), function () {
-    Route::get('branch/denied', 'BranchController@denied');
     Route::resource('branch', 'BranchController', ['except' => ['create', 'edit']]);
 });
 
