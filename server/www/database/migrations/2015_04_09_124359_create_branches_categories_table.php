@@ -13,8 +13,7 @@ class CreateBranchesCategoriesTable extends Migration {
      */
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
+            $table->integer('branch_id')->primary()->unsigned();
             $table->integer('category_id')->index()->unsigned()->nullable()->default(null);
             $table->integer('category_secondary_id')->unsigned()->nullable()->default(null);
             $table->integer('category_tertiary_id')->unsigned()->nullable()->default(null);

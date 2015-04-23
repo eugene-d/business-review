@@ -10,6 +10,7 @@ class Emails extends Model {
      */
     protected $table = 'branches_emails';
     public $timestamps = false;
+    protected $primaryKey = 'branch_id';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,7 @@ class Emails extends Model {
      *
      * @var array
      */
-    protected $hidden = ['id', 'branch_id'];
+    protected $hidden = ['branch_id'];
 
     /**
      * The relations method

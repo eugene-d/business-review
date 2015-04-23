@@ -10,20 +10,21 @@ class Sites extends Model {
      */
     protected $table = 'branches_sites';
     public $timestamps = false;
+    protected $primaryKey = 'branch_id';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['site_priority', 'site'];
+    protected $fillable = ['site'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id', 'branch_id'];
+    protected $hidden = ['branch_id'];
 
     /**
      * The relations method

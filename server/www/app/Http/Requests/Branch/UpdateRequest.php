@@ -1,9 +1,9 @@
-<?php namespace App\Http\Requests;
+<?php namespace App\Http\Requests\Branch;
 
 use App\Http\Requests\Request;
 use App\Http\Requests\CommonRequestValidationRules;
 
-class CreateBranchRequest extends Request {
+class UpdateRequest extends Request {
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -22,6 +22,7 @@ class CreateBranchRequest extends Request {
         $commonRules = new CommonRequestValidationRules();
         return $commonRules->mergeWithCustom([
             //branches
+            'id' => 'required',
             'photo' => '',
             'request' => 'required',
             'rating' => '',
@@ -30,21 +31,17 @@ class CreateBranchRequest extends Request {
             'deleted' => '',
             'viewed' => '',
             'deleted_at' => '',
-            'created_at' => 'required',
+            'created_at' => '',
             'updated_at' => '',
             'name_us' => 'required',
             'name_ua' => '',
             'name_ru' => '',
             //branches_emails
-            'email_priority' => '',
             'email' => '',
             //branches_sites
-            'site_priority' => '',
             'site' => '',
             //branches_phones
-            'phone_priority' => '',
             'phone' => '',
-            'is_fax' => '',
             //branches_descriptions
             'description_us' => '',
             'about_us' => '',

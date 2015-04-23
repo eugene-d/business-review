@@ -1,9 +1,9 @@
-<?php namespace App\Http\Requests;
+<?php namespace App\Http\Requests\Branch;
 
 use App\Http\Requests\Request;
 use App\Http\Requests\CommonRequestValidationRules;
 
-class ShowDeleteBranchRequest extends Request {
+class ShowDeleteRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.

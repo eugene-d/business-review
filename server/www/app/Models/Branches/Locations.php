@@ -9,6 +9,7 @@ class Locations extends Model {
      */
     protected $table = 'branches_locations';
     public $timestamps = false;
+    protected $primaryKey = 'branch_id';
 
     /**
      * The attributes that are mass assignable.

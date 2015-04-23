@@ -1,10 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\CreateBranchRequest;
-use App\Http\Requests\ShowDeleteBranchRequest;
+use App\Http\Requests\Branch\CreateRequest;
+use App\Http\Requests\Branch\UpdateRequest;
+use App\Http\Requests\Branch\ShowDeleteRequest;
 use App\Models\Branches;
-use App\Services\CreateBranchService;
+use App\Services\BranchService;
 
 class BranchController extends Controller {
     private $defaultResponse = ['status' => 200, 'message' => 'Done.'];
@@ -21,44 +22,46 @@ class BranchController extends Controller {
 
     /**
      * Store a newly created resource in storage.
-     * @param CreateBranchRequest $request
-     * @param CreateBranchService $createBranchService
+     * @param CreateRequest $request
+     * @param BranchService $branchService
      * @param Branches $branches
      * @return Response
      */
-    public function store(CreateBranchRequest $request, CreateBranchService $createBranchService, Branches $branches) {
-        $createBranchService->create($request->all(), $branches);
+    public function store(CreateRequest $request, BranchService $branchService, Branches $branches) {
+        $branchService->create($request->all(), $branches);
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 
     /**
      * Display the specified resource.
      * @param Branches $branches
-     * @param ShowDeleteBranchRequest $request
+     * @param ShowDeleteRequest $request
      * @return Response
      */
-    public function show(Branches $branches, ShowDeleteBranchRequest $request) {
+    public function show(Branches $branches, ShowDeleteRequest $request) {
         $this->defaultResponse['branch'] = $branches->find($request->get('id'));
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  int $id
+     * @param Branches $branches
+     * @param UpdateRequest $request
+     * @param BranchService $branchService
      * @return Response
      */
-    public function update($id) {
-        $this->defaultResponse['message'] = 'Update the specified resource in storage.';
+    public function update(Branches $branches, UpdateRequest $request, BranchService $branchService) {
+        $branchService->update($request->all(), $branches);
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 
     /**
      * Remove the specified resource from storage.
      * @param Branches $branches
-     * @param ShowDeleteBranchRequest $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param ShowDeleteRequest $request
+     * @return Response
      */
-    public function destroy(Branches $branches, ShowDeleteBranchRequest $request) {
+    public function destroy(Branches $branches, ShowDeleteRequest $request) {
         $branches->find($request->get('id'))->delete();
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }

@@ -9,6 +9,7 @@ class Categories extends Model {
      */
     protected $table = 'branches_categories';
     public $timestamps = false;
+    protected $primaryKey = 'branch_id';
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,7 @@ class Categories extends Model {
      *
      * @var array
      */
-    protected $hidden = ['id', 'branch_id'];
+    protected $hidden = ['branch_id'];
 
     /**
      * The relations method

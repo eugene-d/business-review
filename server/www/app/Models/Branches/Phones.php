@@ -10,20 +10,21 @@ class Phones extends Model {
      */
     protected $table = 'branches_phones';
     public $timestamps = false;
+    protected $primaryKey = 'branch_id';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['phone_priority', 'is_fax', 'phone'];
+    protected $fillable = ['phone'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id', 'branch_id'];
+    protected $hidden = ['branch_id'];
 
     /**
      * The relations method

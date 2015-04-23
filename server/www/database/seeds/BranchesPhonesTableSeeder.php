@@ -13,7 +13,6 @@ class BranchesPhonesTableSeeder extends Seeder {
         BranchesPhones::truncate();
         BranchesPhones::create([
             'branch_id' => 1,
-            'phone_priority' => 1,
             'phone' => '(061) 220-04-76'
         ]);
     }

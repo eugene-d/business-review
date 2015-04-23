@@ -59,7 +59,7 @@ class Branches extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function email() {
-        return $this->hasMany('App\Models\Branches\Emails', 'branch_id', 'id');
+        return $this->hasOne('App\Models\Branches\Emails', 'branch_id', 'id');
     }
 
     /**
@@ -67,7 +67,7 @@ class Branches extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function phone() {
-        return $this->hasMany('App\Models\Branches\Phones', 'branch_id', 'id');
+        return $this->hasOne('App\Models\Branches\Phones', 'branch_id', 'id');
     }
 
     /**
@@ -75,7 +75,7 @@ class Branches extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function site() {
-        return $this->hasMany('App\Models\Branches\Sites', 'branch_id', 'id');
+        return $this->hasOne('App\Models\Branches\Sites', 'branch_id', 'id');
     }
 
     /**

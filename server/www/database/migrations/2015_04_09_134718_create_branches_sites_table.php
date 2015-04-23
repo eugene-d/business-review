@@ -13,10 +13,8 @@ class CreateBranchesSitesTable extends Migration {
      */
     public function up() {
         Schema::create($this->tName, function(Blueprint $table) {
-            $table->increments('id');
-            $table->integer('branch_id')->index()->unsigned()->nullable()->default(null);
-            $table->integer('site_priority')->unsigned()->default(1);
-            $table->string('site', 100)->nullable()->default(null);
+            $table->integer('branch_id')->primary()->unsigned();
+            $table->string('site', 500)->nullable()->default(null);
         });
     }
 
