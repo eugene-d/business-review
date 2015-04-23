@@ -32,8 +32,7 @@ class Handler extends ExceptionHandler {
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e) {
-        // If the request wants JSON (AJAX doesn't always want JSON)
-        if ($request->wantsJson()) {
+        //if ($request->wantsJson()) {
             // Define the response
             $response = ['status' => 400, 'errors' => 'Sorry, something went wrong.'];
 
@@ -56,6 +55,6 @@ class Handler extends ExceptionHandler {
         }
 
         // Default to the parent class' implementation of handler
-        return parent::render($request, $e);
-    }
+        //return parent::render($request, $e);
+    //}
 }
