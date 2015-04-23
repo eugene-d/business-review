@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\CreateBranchRequest;
+use App\Http\Requests\ShowBranchRequest;
 use App\Models\Branches;
 use App\Services\CreateBranchService;
 
@@ -23,7 +24,7 @@ class BranchController extends Controller {
      * @param CreateBranchRequest $request
      * @param CreateBranchService $createBranchService
      * @param Branches $branches
-     * @return string
+     * @return Response
      */
     public function store(CreateBranchRequest $request, CreateBranchService $createBranchService, Branches $branches) {
         $createBranchService->create($request->all(), $branches);
@@ -32,11 +33,12 @@ class BranchController extends Controller {
 
     /**
      * Display the specified resource.
-     * @param  int $id
+     * @param Branches $branches
+     * @param ShowBranchRequest $request
      * @return Response
      */
-    public function show($id) {
-        $this->defaultResponse['message'] = 'Display the specified resource.';
+    public function show(Branches $branches, ShowBranchRequest $request) {
+        $this->defaultResponse['branch'] = $branches->find($request->get('id'));
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 
