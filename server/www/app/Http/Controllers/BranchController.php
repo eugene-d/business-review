@@ -10,10 +10,11 @@ class BranchController extends Controller {
 
     /**
      * Display a listing of the resource.
+     * @param Branches $branches
      * @return Response
      */
-    public function index() {
-        $this->defaultResponse['message'] = 'Display a listing of the resource.';
+    public function index(Branches $branches) {
+        $this->defaultResponse['branches'] = $branches->orderBy('id', 'desc')->take(10)->get();
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 

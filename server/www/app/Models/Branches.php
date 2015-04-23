@@ -37,7 +37,7 @@ class Branches extends Model {
      *
      * @var array
      */
-    protected $hidden = ['id'];
+    protected $hidden = [];
 
     /**
      * The relations method
