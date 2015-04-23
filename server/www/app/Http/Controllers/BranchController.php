@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\CreateBranchRequest;
-use App\Http\Requests\ShowBranchRequest;
+use App\Http\Requests\ShowDeleteBranchRequest;
 use App\Models\Branches;
 use App\Services\CreateBranchService;
 
@@ -34,10 +34,10 @@ class BranchController extends Controller {
     /**
      * Display the specified resource.
      * @param Branches $branches
-     * @param ShowBranchRequest $request
+     * @param ShowDeleteBranchRequest $request
      * @return Response
      */
-    public function show(Branches $branches, ShowBranchRequest $request) {
+    public function show(Branches $branches, ShowDeleteBranchRequest $request) {
         $this->defaultResponse['branch'] = $branches->find($request->get('id'));
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
@@ -54,11 +54,12 @@ class BranchController extends Controller {
 
     /**
      * Remove the specified resource from storage.
-     * @param  int $id
-     * @return Response
+     * @param Branches $branches
+     * @param ShowDeleteBranchRequest $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function destroy($id) {
-        $this->defaultResponse['message'] = 'Remove the specified resource from storage.';
+    public function destroy(Branches $branches, ShowDeleteBranchRequest $request) {
+        $branches->find($request->get('id'))->delete();
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 }

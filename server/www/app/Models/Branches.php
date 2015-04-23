@@ -40,6 +40,21 @@ class Branches extends Model {
     protected $hidden = [];
 
     /**
+     * Destroy the models for the given IDs, with related models
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete() {
+        $this->email()->delete();
+        $this->phone()->delete();
+        $this->site()->delete();
+        $this->description()->delete();
+        $this->location()->delete();
+        $this->category()->delete();
+        return parent::delete();
+    }
+
+    /**
      * The relations method
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

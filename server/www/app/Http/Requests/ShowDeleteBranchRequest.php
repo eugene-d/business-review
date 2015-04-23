@@ -1,8 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Http\Requests\CommonRequestValidationRules;
 
-class ShowBranchRequest extends Request {
+class ShowDeleteBranchRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -19,8 +20,9 @@ class ShowBranchRequest extends Request {
      * @return array
      */
     public function rules() {
-        return [
-            'id' => 'required|integer|max:10'
-        ];
+        $commonRules = new CommonRequestValidationRules();
+        return $commonRules->mergeWithCustom([
+            'id' => 'required'
+        ]);
     }
 }
