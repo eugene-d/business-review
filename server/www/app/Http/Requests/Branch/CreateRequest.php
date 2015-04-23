@@ -36,15 +36,11 @@ class CreateRequest extends Request {
             'name_ua' => '',
             'name_ru' => '',
             //branches_emails
-            'email_priority' => '',
             'email' => '',
             //branches_sites
-            'site_priority' => '',
             'site' => '',
             //branches_phones
-            'phone_priority' => '',
             'phone' => '',
-            'is_fax' => '',
             //branches_descriptions
             'description_us' => '',
             'about_us' => '',
