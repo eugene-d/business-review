@@ -3,7 +3,8 @@
 use App\Http\Requests;
 use App\Http\Requests\Branch\CreateRequest;
 use App\Http\Requests\Branch\UpdateRequest;
-use App\Http\Requests\Branch\ShowDeleteRequest;
+use App\Http\Requests\Branch\ShowRequest;
+use App\Http\Requests\Branch\DeleteRequest;
 use App\Models\Branches;
 use App\Services\BranchService;
 
@@ -35,10 +36,10 @@ class BranchController extends Controller {
     /**
      * Display the specified resource.
      * @param Branches $branches
-     * @param ShowDeleteRequest $request
+     * @param ShowRequest $request
      * @return Response
      */
-    public function show(Branches $branches, ShowDeleteRequest $request) {
+    public function show(Branches $branches, ShowRequest $request) {
         $this->defaultResponse['branch'] = $branches->find($request->get('id'));
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
@@ -58,10 +59,10 @@ class BranchController extends Controller {
     /**
      * Remove the specified resource from storage.
      * @param Branches $branches
-     * @param ShowDeleteRequest $request
+     * @param DeleteRequest $request
      * @return Response
      */
-    public function destroy(Branches $branches, ShowDeleteRequest $request) {
+    public function destroy(Branches $branches, DeleteRequest $request) {
         $branches->find($request->get('id'))->delete();
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
