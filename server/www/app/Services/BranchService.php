@@ -10,6 +10,25 @@ use App\Models\Branches\Categories;
 use Illuminate\Database\Eloquent\Model;
 
 class BranchService {
+    private $attributes = [];
+    private $branch;
+    private $emails;
+    private $sites;
+    private $phones;
+    private $descriptions;
+    private $locations;
+    private $categories;
+
+    public function __construct(Emails $emails, Sites $sites, Phones $phones, Descriptions $descriptions,
+                                Locations $locations, Categories $categories) {
+        $this->emails = $emails;
+        $this->sites = $sites;
+        $this->phones = $phones;
+        $this->descriptions = $descriptions;
+        $this->locations = $locations;
+        $this->categories = $categories;
+    }
+
     /**
      * The method create branch and set attributes including with relative tables attributes
      * @param array $attributes
@@ -17,9 +36,10 @@ class BranchService {
      * @return Branches|static
      */
     public function create(Array $attributes, Branches $branches) {
-        $branches = $branches->create($attributes);
-        $this->proceedBranchRelativeAttributes($attributes, $branches);
-        return $branches;
+        $this->attributes = $attributes;
+        $this->branch = $branches->create($this->attributes);
+        $this->proceedBranchRelativeAttributes();
+        return $this->branch;
     }
 
     /**
@@ -29,57 +49,53 @@ class BranchService {
      * @return Branches
      */
     public function update(Array $attributes, Branches $branches) {
-        $branch = $branches->find($attributes['id'])->fill($attributes);
-        $this->proceedBranchRelativeAttributes($attributes, $branch);
-        $branch->push();
-        return $branches;
+        $this->attributes = $attributes;
+        $this->branch = $branches->find($this->attributes['id'])->fill($this->attributes);
+        $this->proceedBranchRelativeAttributes();
+        $this->branch->push();
+        return $this->branch;
     }
 
     /**
      * The method iterate input attributes and send them to branch relative models
-     * @param array $attributes
-     * @param Model $primary
      */
-    private function proceedBranchRelativeAttributes(Array $attributes, Model $primary) {
-        foreach ($attributes as $attributeName => $attribute) {
+    private function proceedBranchRelativeAttributes() {
+        foreach ($this->attributes as $attributeName => $attribute) {
             switch ($attributeName) {
                 case 'email':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Emails(), $primary->email);
+                    $this->saveBranchRelativeAttribute($this->emails, $this->branch->email);
                     break;
                 case 'site':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Sites(), $primary->site);
+                    $this->saveBranchRelativeAttribute($this->sites, $this->branch->site);
                     break;
                 case 'phone':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Phones(), $primary->phone);
+                    $this->saveBranchRelativeAttribute($this->phones, $this->branch->phone);
                     break;
                 case 'description_us':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Descriptions(), $primary->description);
+                    $this->saveBranchRelativeAttribute($this->descriptions, $this->branch->description);
                     break;
                 case 'city_id':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Locations(), $primary->location);
+                    $this->saveBranchRelativeAttribute($this->locations, $this->branch->location);
                     break;
                 case 'category_id':
-                    $this->saveBranchRelativeAttribute($attributes, $primary, new Categories(), $primary->category);
+                    $this->saveBranchRelativeAttribute($this->categories, $this->branch->category);
                     break;
             }
         }
     }
 
     /**
-     * The method create/update attributes to branch relative model
-     * @param array $attributes
-     * @param Model $primary
-     * @param Model $secondary
-     * @param Model $relative
+     * The method handle create/update records relative to branch
+     * @param Model $relativeFromObject
+     * @param $relativeFromMethod
      */
-    private function saveBranchRelativeAttribute(Array $attributes, Model $primary, Model $secondary, $relative) {
-        if ($relative === null) {
-            //create branch relative records
-            $secondary = $secondary->fill($attributes);
-            $secondary->branch()->associate($primary)->save();
+    private function saveBranchRelativeAttribute(Model $relativeFromObject, $relativeFromMethod) {
+        if ($relativeFromMethod === null) {
+            //fill and create branch relative records
+            $relativeFromObject->fill($this->attributes)->branch()->associate($this->branch)->save();
         } else {
-            //update branch relative methods
-            $relative->fill($attributes);
+            //fill branch relative records for update
+            $relativeFromMethod->fill($this->attributes);
         }
     }
 }
