@@ -31,11 +31,11 @@ class BranchService {
 
     /**
      * The method create branch and set attributes including with relative tables attributes
-     * @param array $attributes
+     * @param $attributes
      * @param Branches $branches
      * @return Branches|static
      */
-    public function create(Array $attributes, Branches $branches) {
+    public function create($attributes, Branches $branches) {
         $this->attributes = $attributes;
         $this->branch = $branches->create($this->attributes);
         $this->proceedBranchRelativeAttributes();
@@ -44,11 +44,11 @@ class BranchService {
 
     /**
      * The method update branch and set attributes including with relative tables attributes
-     * @param array $attributes
+     * @param $attributes
      * @param Branches $branches
      * @return Branches
      */
-    public function update(Array $attributes, Branches $branches) {
+    public function update($attributes, Branches $branches) {
         $this->attributes = $attributes;
         $this->branch = $branches->find($this->attributes['id'])->fill($this->attributes);
         $this->proceedBranchRelativeAttributes();
@@ -86,10 +86,10 @@ class BranchService {
 
     /**
      * The method handle create/update records relative to branch
-     * @param Model $relativeFromObject
+     * @param $relativeFromObject
      * @param $relativeFromMethod
      */
-    private function saveBranchRelativeAttribute(Model $relativeFromObject, $relativeFromMethod) {
+    private function saveBranchRelativeAttribute($relativeFromObject, $relativeFromMethod) {
         if ($relativeFromMethod === null) {
             //fill and create branch relative records
             $relativeFromObject->fill($this->attributes)->branch()->associate($this->branch)->save();
