@@ -7,7 +7,7 @@ abstract class Request extends FormRequest {
     private $responseErrorCode = 422;
     protected $commonValidationRules = [
         //branches
-        'photo' => 'alpha_num|max:500|image',
+        'photo' => 'max:500|regex:/^.*\....$/i',
         'request' => 'alpha_dash|max:255',
         'rating' => 'numeric|max:5',
         'user_id' => 'integer',
@@ -17,16 +17,16 @@ abstract class Request extends FormRequest {
         'deleted_at' => 'date_format:"Y-m-d H:i:s"',
         'created_at' => 'date_format:"Y-m-d H:i:s"',
         'updated_at' => 'date_format:"Y-m-d H:i:s"',
-        'name_us' => 'alpha_dash|max:255|min:2',
-        'name_ua' => 'alpha_dash|max:255|min:2',
-        'name_ru' => 'alpha_dash|max:255|min:2',
+        'name_us' => 'string|max:255|min:2',
+        'name_ua' => 'string|max:255|min:2',
+        'name_ru' => 'string|max:255|min:2',
         'id' => 'integer',
         //branches_emails
         'email' => 'email',
         //branches_sites
         'site' => 'url',
         //branches_phones
-        'phone' => 'alpha_dash',
+        'phone' => 'string|max:1024',
         //branches_descriptions
         'description_us' => 'string|max:1024|required_with:about_us,description_ua,about_ua,description_ru,about_ru',
         'about_us' => 'string|max:1024',
@@ -64,11 +64,19 @@ abstract class Request extends FormRequest {
     protected function combineWithCommon($customRules) {
         foreach ($customRules as $field => $customRule) {
             if(array_key_exists($field, $this->commonValidationRules)) {
-                $customRules[$field] = $this->commonValidationRules[$field]
-                    . (($customRule === '')? '' : '|' . $customRule);
+                $customRules[$field] = $this->addRules($field, $customRule);
             }
         }
         return $customRules;
+    }
+
+    private function addRules($field, $customRule) {
+        if(is_array($this->commonValidationRules[$field])) {
+            $rule = array_merge($this->commonValidationRules[$field], $customRule);
+        } else {
+            $rule = $this->commonValidationRules[$field] . (($customRule === '')? '' : '|' . $customRule);
+        }
+        return $rule;
     }
 
     /**
