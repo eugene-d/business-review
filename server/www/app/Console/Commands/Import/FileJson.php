@@ -5,18 +5,23 @@ use Illuminate\Support\Facades\File;
 class FileJson extends Common {
     private $filePath;
     private $fixFields;
+    private $httpClient;
 
     public function __construct() {
         parent::__construct();
         $this->fixFields = new FixFields();
+        $this->httpClient = new HttpClient();
     }
 
     /**
      * Run import process from json file
-     * @param $importObject
+     * @param $filePath
+     * @param $baseUrl
      */
-    public function run($importObject) {
-        $this->filePath = $importObject->argument('filePath');
+    public function run($filePath, $baseUrl) {
+        $this->filePath = $filePath;
+        $this->httpClient->setBaseUrl($baseUrl);
+
         $jsonBranches = $this->getJson();
         $jsonBranchesSize = sizeof($jsonBranches);
 
@@ -28,7 +33,7 @@ class FileJson extends Common {
             $branchData = $this->fixFields->us($branchData, 'description');
             $branchData = $this->fixFields->request($branchData);
 
-            $importObject->post($branchData);
+            $this->httpClient->post($branchData);
         }
     }
 
