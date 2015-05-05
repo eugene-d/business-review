@@ -29,7 +29,8 @@ class BranchController extends Controller {
      * @return Response
      */
     public function store(CreateRequest $request, BranchService $branchService, Branches $branches) {
-        $branchService->create($request->all(), $branches);
+        $branch = $branchService->create($request->all(), $branches);
+        $this->defaultResponse['branchId'] = $branch->id;
         return response()->json($this->defaultResponse, $this->defaultResponse['status']);
     }
 

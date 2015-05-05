@@ -5,9 +5,9 @@ use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\ClientException;
 
 class HttpClient extends Common {
-    private $httpClient;
-    private $httpClientCookies;
-    private $baseUrl = '';
+    protected $httpClient;
+    protected $httpClientCookies;
+    protected $baseUrl = '';
     private $resourceUrl = '/api/v1/branch';
     private $tokenUrl = '/api/v1/branch';
     private $token = '';
@@ -24,8 +24,10 @@ class HttpClient extends Common {
     /**
      * Create new branch by sending POST request to API
      * @param array $requestBody
+     * @return int
      */
     public function post(Array $requestBody) {
+        $branchId = 0;
         try {
             $request = $this->httpClient->createRequest('POST', $this->baseUrl . $this->resourceUrl, [
                 'cookies' => $this->httpClientCookies,
@@ -35,11 +37,13 @@ class HttpClient extends Common {
 
             $this->info('Send POST request to: ' . $this->baseUrl . $this->resourceUrl);
             $response = $this->httpClient->send($request);
-            $this->info('POST response: ' . $response->json()['message']);
+            $branchId = $response->json()['branchId'];
         } catch (ClientException $e) {
             //$this->comment($e->getRequest());
             $this->error($e->getResponse());
         }
+
+        return $branchId;
     }
 
     /**

@@ -6,11 +6,13 @@ class FileJson extends Common {
     private $filePath;
     private $fixFields;
     private $httpClient;
+    private $imageHandler;
 
     public function __construct() {
         parent::__construct();
         $this->fixFields = new FixFields();
         $this->httpClient = new HttpClient();
+        $this->imageHandler = new ImageHandler();
     }
 
     /**
@@ -33,7 +35,9 @@ class FileJson extends Common {
             $branchData = $this->fixFields->us($branchData, 'description');
             $branchData = $this->fixFields->request($branchData);
 
-            $this->httpClient->post($branchData);
+            $branchData['photo'] = $this->imageHandler->get($branchData['photo']);
+            $branchId = $this->httpClient->post($branchData);
+            $this->imageHandler->save($branchId);
         }
     }
 
