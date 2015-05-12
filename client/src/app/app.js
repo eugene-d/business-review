@@ -4,16 +4,24 @@ define( [
     'angular-animate',
     'angular-aria',
     'angular-material',
+    'angular-resource',
     'uiRouter',
     'welcome/welcome',
-    'service/name-service'
+    'service/name-service',
+    'service/branch-resource'
   ],
   function(angular) {
     'use strict';
 
     var appName = 'reviewApp';
 
-    angular.module(appName, ['ngRoute', 'ngMaterial', 'reviewApp.welcome', 'reviewApp.name-service'])
+    angular.module(appName, [
+      'ngRoute',
+      'ngMaterial',
+      'reviewApp.welcome',
+      'reviewApp.name-service',
+      'reviewApp.branch-resource'
+    ])
 
     .config(['$routeProvider', '$mdThemingProvider',
         function appConfig($urlRouteProvider, $mdThemingProvider) {

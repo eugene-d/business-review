@@ -21,6 +21,7 @@ module.exports = {
       'vendor/angular-animate/angular-animate.js',
       'vendor/angular-aria/angular-aria.js',
       'vendor/angular-material/angular-material.js',
+      'vendor/angular-resource/angular-resource.js',
       'vendor/requirejs/require.js'
     ],
     css: [

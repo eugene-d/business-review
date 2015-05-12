@@ -17,6 +17,9 @@ var requirejsConfig = { // jshint ignore:line
     'angular-material': [
       '../vendor/angular-material/angular-material'
     ],
+    'angular-resource': [
+      '../vendor/angular-resource/angular-resource'
+    ],
     'uiRouter': [
       '../vendor/angular-ui-router/release/angular-ui-router'
     ]
@@ -35,6 +38,9 @@ var requirejsConfig = { // jshint ignore:line
       deps: ['angular']
     },
     'angular-material': {
+      deps: ['angular']
+    },
+    'angular-resource': {
       deps: ['angular']
     },
     'uiRouter': {
