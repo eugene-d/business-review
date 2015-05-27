@@ -7,7 +7,10 @@ client/build
 client/node_modules
 client/vendor
 public/build
-
+public/phpmyadmin
+public/importData
+public/img/branches
+*.log
 #vagrant
 .vagrant
 

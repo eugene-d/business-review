@@ -1,10 +1,17 @@
-<h2>{{message}}</h2>
+<h2 layout="row" layout-sm="column" layout-align="center center">{{message}}</h2>
 
-<md-content>
-<section layout="row" layout-sm="column" layout-align="center center">
-    <md-button class="md-raised">Button</md-button>
-    <md-button class="md-raised md-primary">Primary</md-button>
-    <md-button ng-disabled="true" class="md-raised md-primary">Disabled</md-button>
-    <md-button class="md-raised md-warn">Warn</md-button>
-</section>
+<md-content class="md-content">
+    <md-divider></md-divider>
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="item in branches">
+            <img ng-src="/img/branches/{{item.id}}/{{item.photo}}" class="md-avatar" alt="{{item.name_ru}}"/>
+            <div class="md-list-item-text">
+                <h3>{{ item.name_ru }}</h3>
+                <h4>{{ item.request }}</h4>
+                <p>{{ item.created_at }}</p>
+                <md-button ng-click="deleteBranch(item.id, $index)" class="md-raised md-warn">Delete</md-button>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
 </md-content>

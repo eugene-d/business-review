@@ -273,4 +273,4 @@ gulp.task('server', ['connect', 'default']);
 gulp.task('test', ['debug', 'connect', 'karma', 'protractor']);
 
 gulp.task('build', ['debug', 'clean:build', 'vendorJs', 'vendorCss', 'assets', 'index-html', 'symlink']);
-gulp.task('watch', ['build', 'watch-mode', 'connect', 'karma', 'protractor']);
+gulp.task('watch', ['build', 'watch-mode']);//, 'connect', 'karma', 'protractor']);

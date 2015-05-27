@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DBPASSWORD='123';
+
 apt-get update;
 
 #preparation for php5.6
@@ -27,8 +29,8 @@ apt-get install -y build-essential;
 npm install -g npm@latest;
 
 #mysql
-debconf-set-selections <<< 'mysql-server mysql-server/root_password password 123';
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password 123';
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password $DBPASSWORD';
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $DBPASSWORD';
 apt-get install -y mysql-server;
 mysql -uroot -p123 -e "GRANT ALL PRIVILEGES ON *.* TO forge@localhost IDENTIFIED BY ''"
 mysql -uroot -p123 -e "DROP DATABASE IF EXISTS \`forge\`";
@@ -44,9 +46,21 @@ sudo echo "xdebug.idekey=\"PHPSTORM-XDEBUG\"" >> /etc/php5/apache2/php.ini;
 sudo echo "xdebug.remote_autostart=on" >> /etc/php5/apache2/php.ini;
 sudo echo "xdebug.remote_connect_back=on" >> /etc/php5/apache2/php.ini;
 
+#phpmyadmin
+debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true";
+debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWORD";
+debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWORD";
+debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWORD";
+debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2";
+apt-get -y install phpmyadmin;
+ln -s /usr/share/phpmyadmin/ /vagrant/public/phpmyadmin;
+
 #modRewrite
 sudo a2enmod rewrite;
-sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/sites-available/default;
+sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf;
+
+#change Apache user
+sudo sed -i 's/www-data/vagrant/g' /etc/apache2/envvars;
 
 #apt-get install -y apache2;
 if ! [ -L /var/www/html ]; then
