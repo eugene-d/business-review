@@ -8,6 +8,7 @@
   <title>Business Review</title>
 
   <link rel="stylesheet" href="assets/angular-material.css">
+  <link rel="stylesheet" href="components-font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
   <link rel="stylesheet" href="assets/app.css" />
 
@@ -15,7 +16,7 @@
   <script src="vendor/requirejs/require.js" data-main="app/main.js"></script>
 </head>
 <body>
+  <div ng-include="'app/userMenu/userMenu.tpl.html'"></div>
   <div class="main-ui-view" data-ui-view="main"></div>
-  <section ng-view ng-cloak></section>
 </body>
 </html>

@@ -25,7 +25,11 @@ module.exports = {
       'vendor/requirejs/require.js'
     ],
     css: [
-      'vendor/angular-material/angular-material.css'
+      'vendor/angular-material/angular-material.css',
+      'vendor/components-font-awesome/css/font-awesome.css',
+      'vendor/components-font-awesome/fonts/fontawesome-webfont.svg',
+      'vendor/components-font-awesome/fonts/fontawesome-webfont.woff',
+      'vendor/components-font-awesome/fonts/fontawesome-webfont.woff2'
     ],
     dev: [
       'vendor/angular-mocks/angular-mocks.js'

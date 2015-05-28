@@ -1,0 +1,37 @@
+<div ng-controller="UserMenuCtrl">
+  <section layout="row">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">User menu</h1>
+      </md-toolbar>
+      <md-content layout-padding ng-controller="AuthCtrl">
+
+        <form>
+
+          <md-input-container>
+            <label for="email">Login</label>
+            <input type="text" id="email" ng-model="login.email" md-sidenav-focus>
+          </md-input-container>
+
+          <md-input-container>
+            <label for="email">Password</label>
+            <input type="password" id="password"  ng-model="login.password">
+          </md-input-container>
+
+        </form>
+
+        <md-button ng-click="login()" class="md-primary">Login</md-button>
+
+      </md-content>
+    </md-sidenav>
+  </section>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span flex>Title</span>
+        <md-button ng-click="showLogin($event)" class="md-icon-button" aria-label="More">
+          <i class="fa fa-ellipsis-v fa-2x"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+</div>

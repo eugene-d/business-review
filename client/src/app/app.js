@@ -7,6 +7,8 @@ define( [
     'angular-resource',
     'uiRouter',
     'welcome/welcome',
+    'auth/auth',
+    'userMenu/userMenu',
     'service/name-service',
     'service/branch-resource'
   ],
@@ -19,6 +21,8 @@ define( [
       'ngRoute',
       'ngMaterial',
       'reviewApp.welcome',
+      'reviewApp.auth',
+      'reviewApp.userMenu',
       'reviewApp.name-service',
       'reviewApp.branch-resource'
     ])
@@ -39,7 +43,9 @@ define( [
 
     return {
       init: function () {
-        angular.bootstrap(document, [appName]);
+        angular.element(document).ready(function() {
+          angular.bootstrap(document, [appName]);
+        });
       }
     };
   }
