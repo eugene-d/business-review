@@ -6,6 +6,8 @@ define( [
     'angular-material',
     'angular-resource',
     'uiRouter',
+    'fireBase',
+    'angularFire',
     'welcome/welcome',
     'service/name-service',
     'service/branch-resource'
@@ -20,7 +22,8 @@ define( [
       'ngMaterial',
       'reviewApp.welcome',
       'reviewApp.name-service',
-      'reviewApp.branch-resource'
+      'reviewApp.branch-resource',
+      'firebase'
     ])
 
     .config(['$routeProvider', '$mdThemingProvider',

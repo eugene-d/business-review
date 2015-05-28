@@ -22,7 +22,9 @@ module.exports = {
       'vendor/angular-aria/angular-aria.js',
       'vendor/angular-material/angular-material.js',
       'vendor/angular-resource/angular-resource.js',
-      'vendor/requirejs/require.js'
+      'vendor/requirejs/require.js',
+      'vendor/angularfire/dist/angularfire.min.js',
+      'vendor/firebase/firebase.js'
     ],
     css: [
       'vendor/angular-material/angular-material.css'

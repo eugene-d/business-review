@@ -20,6 +20,12 @@ var requirejsConfig = { // jshint ignore:line
     'angular-resource': [
       '../vendor/angular-resource/angular-resource'
     ],
+    'fireBase': [
+      '../vendor/firebase/firebase'
+    ],
+    'angularFire': [
+      '../vendor/angularfire/dist/angularfire.min'
+    ],
     'uiRouter': [
       '../vendor/angular-ui-router/release/angular-ui-router'
     ]
@@ -44,6 +50,9 @@ var requirejsConfig = { // jshint ignore:line
       deps: ['angular']
     },
     'uiRouter': {
+      deps: ['angular']
+    },
+    'angularFire': {
       deps: ['angular']
     }
   }

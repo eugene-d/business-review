@@ -37,15 +37,11 @@ define(['angular'], function (angular) {
           });
         };
 
-        var init = function () {
-          BranchResource.get({}, function (responce) {
-            if (responce.branches) {
-              $scope.branches = responce.branches;
-            }
-          });
-        };
-
-        init();
+        BranchResource.get({}, function (responce) {
+          if (responce.branches) {
+            $scope.branches = responce.branches;
+          }
+        });
       });
   }
 );
